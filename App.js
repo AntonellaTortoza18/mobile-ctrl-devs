@@ -1,25 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-
-
+import Home from "./src/screens/Home";
+import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from "react-redux";
+import { store } from "./src/redux/store";
+import Hotels from "./src/screens/Hotels";
+import Shows from "./src/screens/Shows";
+import Login from "./src/screens/Login";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
+    <Provider  store={store}>
+    <View>
+        {/*  <Hotels></Hotels> */}  
+       {/* <Home></Home> */} 
+        {/* <Shows></Shows> */}  
+         <Login></Login> 
     </View>
+    </Provider>
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 100,
-    height:100,
-  },
-});
+
