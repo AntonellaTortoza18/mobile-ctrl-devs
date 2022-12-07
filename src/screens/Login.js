@@ -10,8 +10,6 @@ import {
   Alert,
 } from "react-native";
 import React from "react";
-import AwesomeAlert from "react-native-awesome-alerts";
-import { showMessage, hideMessage } from "react-native-flash-message";
 import { useRef, useState } from "react";
 import usersActions from "../redux/actions/usersActions";
 import { useDispatch } from "react-redux";
@@ -64,10 +62,10 @@ export default function Login() {
 
   return (
     <>
-      <ScrollView>
-        <View>
+     
+        <View  style={styles.containerr}>
           <ImageBackground
-            resizeMode="cover"
+            resizeMode="contain"
             source={require("../../assets/map.png")}
             style={styles.image}
           >
@@ -113,7 +111,7 @@ export default function Login() {
             </Pressable>
           </ImageBackground>
         </View>
-      </ScrollView>
+      
     </>
   );
 }
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: 35,
+    marginBottom: 90,
     borderColor: "rgb (68, 78, 84 )",
     shadowColor: "black",
   },
@@ -154,11 +152,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   button: {
-    marginTop: 25,
+    marginTop: 90,
     marginBottom: 25,
     backgroundColor: "rgb(111, 164, 198)",
     width: "30%",
     borderRadius: 30,
     padding: 10,
   },
+  containerr:{
+    flex:1,
+    justifyContent:"center",
+    flexDirection: "column",
+    alignItems:"center",
+    alignContent:"space-between",
+    height:"100%"
+  }
 });

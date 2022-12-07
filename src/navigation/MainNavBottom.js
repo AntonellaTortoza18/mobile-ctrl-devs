@@ -2,9 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useEffect } from "react";
 import Cities from "../screens/Cities";
 import { Ionicons } from "@expo/vector-icons";
-import ItinerariesCity from "../screens/ItinerariesCity";
-import MainStack from "./MainNavStack";
+import Hotels from "../screens/Hotels";
 import SingUp from "../screens/SingUp";
+import Home from "../screens/Home";
 
 const Bottom = createBottomTabNavigator();
 const Navigator2 = () => {
@@ -13,17 +13,17 @@ const Navigator2 = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === "home") {
+          if (route.name === "Home") {
             iconName = focused ? "home" : "home";
-          } else if (route.name === "cities") {
+          } else if (route.name === "Cities") {
             iconName = focused ? "globe" : "globe";
-          } else if (route.name === "login") {
+          } else if (route.name === "Login") {
             iconName = focused ? "enter" : "enter";
-          } else if (route.name === "signup") {
+          } else if (route.name === "Signup") {
             iconName = focused ? "person-add" : "person-add";
-          } else if (route.name === "logout") {
+          } else if (route.name === "Logout") {
             iconName = focused ? "exit" : "exit";
-          } else if (route.name === "itineraries") {
+          } else if (route.name === "Hotels") {
             iconName = focused ? "globe" : "globe";
           }
 
@@ -35,26 +35,26 @@ const Navigator2 = () => {
       })}
     >
       <Bottom.Screen
-        name="home"
-        component={MainStack}
+        name="Home"
+        component={Home}
         options={{ headerShown: false }}
       />
        <Bottom.Screen
-        name="cities"
+        name="Cities"
         component={Cities}
         options={{ headerShown: false }}
       />
        <Bottom.Screen
-        name="itineraries"
-        component={ItinerariesCity}
+        name="Hotels"
+        component={Hotels}
         options={{ headerShown: false }}
       />
      
      
        <Bottom.Screen
-        name="signup"
+        name="Signup"
         component={SingUp}
-        options={{ headerShown: false }}
+     
       />
 
     </Bottom.Navigator>
