@@ -14,7 +14,7 @@ const initialState = {
 const citiesReducers = createReducer(initialState, (builder) => {
   builder
     .addCase(getCities.fulfilled, (state, action) => {
-      let categoriesZones = action.payload.map((event) => event.zone);
+      let categoriesZones = action.payload?.map((event) => event.zone);
       let categoriesZonesFilter = [...new Set(categoriesZones)];
       return {
         ...state,

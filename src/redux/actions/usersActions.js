@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import apiUrl from "../../url";
+import apiUrl from "../../../url";
 
 const enter = createAsyncThunk("enter", async (datos) => {
   //datos son el objeto que viene del formulario
