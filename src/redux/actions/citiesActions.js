@@ -16,11 +16,9 @@ const getCities = createAsyncThunk("getCities", async () => {
 const getCitiesFilter = createAsyncThunk(
   "getCitiesFilter",
   async ({ zone, value , checks}) => {
-    let url = `${apiUrl}api/cities?${zone}&name=${value}`;
-
+    let url = `${apiUrl}api/cities?name=${value}`;
     try {
       const res = await axios.get(url);
-      console.log(res.data.response);
       return {
         cities: res.data.response,
         zone,
