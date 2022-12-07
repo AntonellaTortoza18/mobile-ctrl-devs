@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import axios from "axios";
 import apiUrl from "../../url";
-import { showMessage } from "react-native-flash-message"
+
 
 export default function SingUp(props) {
   let { role } = props;
@@ -54,36 +54,48 @@ export default function SingUp(props) {
         <TextInput
           style={styles.inputSignUp}
           id="name"
+          placeholderTextColor="#333333"
+          color="black"
           placeholder="Name"
           onChangeText={(e) => handlerInput(e, "name")}
         />
         <TextInput
           style={styles.inputSignUp}
           id="LastName"
+          placeholderTextColor="#333333"
+          color="black"
           placeholder="LastName"
           onChangeText={(e) => handlerInput(e, "lastName")}
         />
         <TextInput
           style={styles.inputSignUp}
           id="photo"
+          color="black"
+          placeholderTextColor="#333333"
           placeholder="URL photo"
           onChangeText={(e) => handlerInput(e, "photo")}
         />
         <TextInput
           style={styles.inputSignUp}
           id="Age"
+          color="black"
+          placeholderTextColor="#333333"
           placeholder="Age"
           onChangeText={(e) => handlerInput(e, "age")}
         />
         <TextInput
           style={styles.inputSignUp}
           id="mail"
+          placeholderTextColor="#333333"
+          color="black"
           placeholder="Email"
           onChangeText={(e) => handlerInput(e, "mail")}
         />
         <TextInput
           style={styles.inputSignUp}
           id="password"
+          placeholderTextColor="#333333"
+          color="black"
           placeholder="Password"
           onChangeText={(e) => handlerInput(e, "password")}
         />
@@ -127,10 +139,10 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     alignItems: "center",
+    marginBottom:60
   },
   inputSignUp: {
     backgroundColor: "rgba(255, 255, 255, 0.50)",
-    color: "black",
     width: "65%",
     borderRadius: 30,
     paddingBottom: 5,
