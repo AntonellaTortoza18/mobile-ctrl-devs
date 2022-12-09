@@ -48,6 +48,7 @@ export default function Cities() {
            onChangeText={(filter) => {
             setfirst(filter);
             let text = filter;
+            
             dispatch(getCitiesFilter({ value: text }));
           }}
         />

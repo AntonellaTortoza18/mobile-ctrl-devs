@@ -52,6 +52,7 @@ export default function Reaction(props) {
             <>
             <TouchableOpacity onPress={()=>{
               changeIcon(e.name)
+              
             }}>
               <Image
               style={styles.imageIcon}

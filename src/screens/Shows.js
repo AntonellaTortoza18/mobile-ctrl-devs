@@ -17,9 +17,6 @@ export default function Shows() {
         // eslint-disable-next-line
       }, []);
 
-    
-
-
       return (
         <ScrollView>
           <ImageBackground

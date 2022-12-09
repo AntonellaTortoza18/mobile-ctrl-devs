@@ -27,6 +27,7 @@ export default function DetailsCity({ route }) {
   };
 
   
+  
   useEffect(() => {
     city();
   }, []);

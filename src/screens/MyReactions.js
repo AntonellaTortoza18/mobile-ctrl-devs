@@ -12,7 +12,6 @@ export default function MyReactions() {
   const { getMyReactions, deleteMyReactions } = reactionsActions;
   let dispatch = useDispatch();
  
-  
   useEffect(() => {
     dispatch(
       getMyReactions({

@@ -11,6 +11,7 @@ export default function CardMyReactions(props) {
         resizeMode="cover"
           style={styles.image}
           source={{ uri: event.photo[0] }}
+          
         />
         <View style={{ flex:1, flexDirection:"column", justifyContent: "center", width:220,}}>
           <Text style={{padding:20, textAlign:"center"}}>{event.name}</Text>

@@ -96,6 +96,7 @@ const {  logged, token } = useSelector((state) => state.user)
         options={{ headerShown: false }}
         component={Cities}
       />
+      
      
       <Bottom.Screen
         name="Login"
