@@ -22,7 +22,6 @@ const reactionsReducers = createReducer(initialState, (builder) => {
     let reaction = state.myreactions.filter(
       (myreactionss) => myreactionss._id !== action.payload.myreactions._id
     );
-    console.log(reaction);
     return { ...state, myreactions: reaction };
   })
   .addCase(getShows.fulfilled, (state, action) => {
