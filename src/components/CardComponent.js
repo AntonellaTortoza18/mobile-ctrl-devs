@@ -8,17 +8,19 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  ImageBackground
 } from "react-native";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import usersActions from "../redux/actions/usersActions";
 import commentsAction from "../redux/actions/commentAction";
 import axios from "axios";
 import apiUrl from "../../url";
+import { useNavigation } from '@react-navigation/native';
 
 export default function CardComponent({ route }) {
   let { eventId } = route.params;
+  const navigation = useNavigation();
   const { idUser, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { getComment, createComment, deleteComment, editComment } =
@@ -32,6 +34,8 @@ export default function CardComponent({ route }) {
     date: "10-12-2022",
   });
 
+  console.log(idUser);
+
   useEffect(() => {
     getMyComments();
   }, [reload]);
@@ -39,7 +43,7 @@ export default function CardComponent({ route }) {
   async function getMyComments() {
     let res = await dispatch(getComment({ id: eventId }));
     setComments(res.payload.comments);
-     setReload(!reload); 
+    setReload(!reload);
   }
 
   const handlerInput = (e, campo, value) => {
@@ -79,20 +83,6 @@ export default function CardComponent({ route }) {
         },
       ]);
     }
-  };
-
-  const delet = async (event) => {
-    console.log(event.target.name);
-    Alert.alert("Hi", "Comment created successfully 🤩", [
-      {
-        text: "OK",
-        onPress: async () => {
-          try {
-            await dispatch(deleteComment(idComment));
-          } catch {}
-        },
-      },
-    ]);
   };
 
   return (
@@ -141,11 +131,36 @@ export default function CardComponent({ route }) {
                           <Text style={{ marginLeft: 20 }}>{item.comment}</Text>
                         </View>
                         <View style={styles.containIcon}>
+                            <TouchableOpacity onPress={() => navigation.navigate('InputEdit', {commentId: item._id})}>
                           <Image
                             source={require("../../assets/editar.png")}
                             style={styles.edit}
                           />
-                          <TouchableOpacity onPress={delet} name={item._id}>
+                          </TouchableOpacity>
+                          <TouchableOpacity
+                            onPress={() =>
+                              Alert.alert(
+                                "Hi",
+                                "Are you sure to delete the comment?",
+                                [
+                                  {
+                                    text: "OK",
+                                    onPress: async () => {
+                                      try {
+                                        await axios.delete(
+                                          `${apiUrl}api/comments/${item._id}`
+                                        );
+                                      } catch {}
+                                    },
+                                  },
+                                  {
+                                    text: "Cancel",
+                                    style: "cancel",
+                                  },
+                                ]
+                              )
+                            }
+                          >
                             <Image
                               source={require("../../assets/eliminar.png")}
                               style={styles.edit}
@@ -166,6 +181,14 @@ export default function CardComponent({ route }) {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+    paddingRight: 5,
+  },
   containInput: {
     width: "100%",
     alignItems: "center",
