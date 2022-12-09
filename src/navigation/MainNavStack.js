@@ -5,6 +5,7 @@ import SingUp from "../screens/SingUp"
 import Home from "../screens/Home"
 import Login from "../screens/Login"
 import Hotels from "../screens/Hotels"
+import CardComponent from "../components/CardComponent"
 
 
 const Stack = createNativeStackNavigator()
@@ -17,6 +18,8 @@ const Navigator = () => {
 			<Stack.Screen name="cities" options={{headerShown: false}}  component={Cities}/>
 			<Stack.Screen name="login" options={{headerShown: false}} component={Login}/>
 			<Stack.Screen name="signup" options={{headerShown: false}} component={SingUp}/>
+            <Stack.Screen name="comments" options={{headerShown: false}} component={CardComponent}/>
+
 		</Stack.Navigator>
 	)
 }

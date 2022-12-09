@@ -1,4 +1,6 @@
-import { View, ScrollView,
+import {
+  View,
+  ScrollView,
   ImageBackground,
   StyleSheet,
   TextInput,
@@ -11,24 +13,19 @@ import { useDispatch, useSelector } from "react-redux";
 import HotelsCard from "../components/HotelsCard";
 
 const Hotels = () => {
-  const [first, setfirst] = useState("")
+  const [first, setfirst] = useState("");
   const dispatch = useDispatch();
   const { getHotels, getHotelsFilter, getHotelsSelect } = hotelsActions;
   const { hotels, name } = useSelector((state) => state.hotels);
 
-
   useEffect(() => {
-
-    if(name){
-      dispatch(getHotelsFilter(name))
-    }else{
-    dispatch(getHotels());
+    if (name) {
+      dispatch(getHotelsFilter(name));
+    } else {
+      dispatch(getHotels());
     }
     // eslint-disable-next-line
   }, []);
-
-
-
 
   return (
     <ScrollView>
@@ -44,12 +41,11 @@ const Hotels = () => {
         <TextInput
           placeholder="Search your destination..."
           style={styles.input}
-          onChangeText={(e)=> {
-            setfirst(e)
-            let text = e
-            dispatch(getHotelsFilter({name:text}))
-          } }
-          
+          onChangeText={(e) => {
+            setfirst(e);
+            let text = e;
+            dispatch(getHotelsFilter({ name: text }));
+          }}
         />
       </View>
       <View style={styles.containImage}>
@@ -57,6 +53,7 @@ const Hotels = () => {
           {hotels?.map((item, index) => {
             return (
               <HotelsCard
+                idHotel={item._id}
                 key={index}
                 img={item.photo[0]}
                 name={item.name}

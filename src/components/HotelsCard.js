@@ -1,15 +1,21 @@
-import { View, Text, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 export default function HotelsCard(props) {
-    let { img, name } = props;
+    let { img, name,  idHotel } = props;
+    const navigation = useNavigation();
+   
+
   return (
    
         <View style={styles.containCities}>
+          <TouchableOpacity  onPress={() => navigation.navigate('DetailsHotel', {hotelId:  idHotel})}>
             <ImageBackground imageStyle={{ borderRadius: 20}}
                   source={{uri: img}} style={styles.cityImage}>
                 <Text style={styles.titleCity}>{name}</Text>
             </ImageBackground>
+          </TouchableOpacity>
         </View>
      
   )

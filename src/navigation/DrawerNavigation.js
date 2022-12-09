@@ -9,6 +9,10 @@ import Hotels from "../screens/Hotels";
 import Login from "../screens/Login";
 import Home from "../screens/Home";
 import Shows from "../screens/Shows";
+import CardComponent from "../components/CardComponent";
+import DetailsHotel from "../screens/DetailsHotel";
+import DetailsCity from "../screens/DetailsCity";
+
 const Drawer = createDrawerNavigator();
 export function DrawerNavigation() {
   return (
@@ -42,9 +46,24 @@ export function DrawerNavigation() {
       <Drawer.Screen name="SignUp" component={SingUp} />
       <Drawer.Screen
         name="Login"
-       
         component={Login}
       />
+       <Drawer.Screen
+        name="Comments"
+        options={{ headerShown: false }}
+        component={CardComponent}
+      />
+        <Drawer.Screen
+        name="DetailsHotel"
+        options={{ headerShown: false }}
+        component={DetailsHotel}
+      />
+        <Drawer.Screen
+        name="DetailsCity"
+        options={{ headerShown: false }}
+        component={DetailsCity}
+      />
+      
     </Drawer.Navigator>
   );
 }

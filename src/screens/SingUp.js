@@ -6,13 +6,17 @@ import {
   TouchableOpacity,
   Text,
   ImageBackground,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import axios from "axios";
 import apiUrl from "../../url";
+import { useNavigation } from '@react-navigation/native';
+
 
 
 export default function SingUp(props) {
+  const navigation = useNavigation();
   let { role } = props;
   const [signUp, setSignUp] = useState({
     name: "",
@@ -37,7 +41,23 @@ export default function SingUp(props) {
     if (!inputs) {
       try {
         let res = await axios.post(`${apiUrl}api/auth/sign-up`, signUp);
-        console.log(res);
+        if (res.data.success) {
+          Alert.alert(
+            "Hi",
+            "MyTinerary sent a notification to your email, open the Gmail app and tap Verify my account prompt to verify its you",
+            [
+              {
+                text: "OK",
+              },
+            ]
+          );
+        } else {
+          Alert.alert("Error", "Your data is invalid ☹️", [
+            {
+              text: "OK",
+            },
+          ]);
+        }
       } catch (e) {
         console.log(e);
       }
@@ -45,7 +65,7 @@ export default function SingUp(props) {
   };
 
   return (
-    <View style={styles.contenedor} >
+    <View style={styles.contenedor}>
       <ImageBackground
         resizeMode="contain"
         source={require("../../assets/map.png")}
@@ -97,6 +117,8 @@ export default function SingUp(props) {
           placeholderTextColor="#333333"
           color="black"
           placeholder="Password"
+          secureTextEntry={true}
+          password={true}
           onChangeText={(e) => handlerInput(e, "password")}
         />
         <TouchableOpacity style={styles.button}>
@@ -110,7 +132,7 @@ export default function SingUp(props) {
         <Text style={{ color: "#1c7cafe6", fontSize: 14, textAlign: "center" }}>
           Already have an account?
         </Text>
-        <Pressable>
+        <Pressable onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
               color: "#1c7cafe6",
@@ -139,7 +161,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     alignItems: "center",
-    marginBottom:60
+    marginBottom: 60,
   },
   inputSignUp: {
     backgroundColor: "rgba(255, 255, 255, 0.50)",
