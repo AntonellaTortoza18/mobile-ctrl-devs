@@ -12,12 +12,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import apiUrl from "../../url";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 export default function InputEdit({ route }) {
   let { commentId, eventId } = route.params;
-  const navigation = useNavigation();
+  const { idUser, token } = useSelector((state) => state.user);
   const [create, setCreate] = useState({
-    userId: "6381a0577954f5eb0e896e24",
+    userId: idUser,
     showId: eventId,
     comment: "",
     date: "10-12-2022",
@@ -32,12 +33,13 @@ export default function InputEdit({ route }) {
 
   const submit = async () => {
     let inputs = Object.values(create).some((input) => input === "");
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     if (!inputs) {
       try {
-        let res = await axios.put(`${apiUrl}api/comments/${commentId}`, create);
+        let res = await axios.put(`${apiUrl}api/comments/${commentId}`, create, headers);
         console.log(res);
         if (res.data.success) {
-          Alert.alert("Hi", "Comment modified successfully", [
+          Alert.alert(user.name, "The comment was modified successfully", [
             {
               text: "Back to comments",
              /*  onPress: () => navigation.navigate(),  */

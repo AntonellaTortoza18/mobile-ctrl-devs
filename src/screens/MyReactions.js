@@ -7,7 +7,7 @@ import reactionsActions from "../redux/actions/reactionsActions";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function MyReactions() {
-  const { token, idUser } = useSelector((state) => state.user);
+  const { token, idUser, user } = useSelector((state) => state.user);
   const { myreactions } = useSelector((state) => state.reactions);
   const { getMyReactions, deleteMyReactions } = reactionsActions;
   let dispatch = useDispatch();
@@ -16,9 +16,8 @@ export default function MyReactions() {
   useEffect(() => {
     dispatch(
       getMyReactions({
-        idUser: "6384de96d8b6f34da0f0868f",
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRkZTk2ZDhiNmYzNGRhMGYwODY4ZiIsIm5hbWUiOiJBbnRvbmVsbGEiLCJwaG90byI6Imh0dHBzOi8vZW5jcnlwdGVkLXRibjAuZ3N0YXRpYy5jb20vaW1hZ2VzP3E9dGJuOkFOZDlHY1N1clF4cXFWS1A4SF84MEVoaG9FcF9wNWFHMlNUSEEtVDJYUSZ1c3FwPUNBVSIsImxvZ2dlZCI6dHJ1ZSwiaWF0IjoxNjcwNTQxMjU3LCJleHAiOjE3MDIwNzcyNTd9.RPmwux9V-3YGKe7ikxqNQjfwL5VryWy8EFcGGogvADE",
+        idUser,
+        token,
       })
     );
     // eslint-disable-next-line
@@ -43,7 +42,7 @@ export default function MyReactions() {
       {myreactions?.map((item, index) => {
        function deleteReaction() {
         Alert.alert(
-          "Hi",
+          user.name,
           "Would do you like delete this reaction?",
           
           [
@@ -54,8 +53,7 @@ export default function MyReactions() {
             { text: "OK", onPress: () =>{dispatch(
               deleteMyReactions({
                 idReaction: item._id,
-                token:
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRkZTk2ZDhiNmYzNGRhMGYwODY4ZiIsIm5hbWUiOiJBbnRvbmVsbGEiLCJwaG90byI6Imh0dHBzOi8vZW5jcnlwdGVkLXRibjAuZ3N0YXRpYy5jb20vaW1hZ2VzP3E9dGJuOkFOZDlHY1N1clF4cXFWS1A4SF84MEVoaG9FcF9wNWFHMlNUSEEtVDJYUSZ1c3FwPUNBVSIsImxvZ2dlZCI6dHJ1ZSwiaWF0IjoxNjcwNTQxMjU3LCJleHAiOjE3MDIwNzcyNTd9.RPmwux9V-3YGKe7ikxqNQjfwL5VryWy8EFcGGogvADE",
+                token,
               })
             )}} 
           ]

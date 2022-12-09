@@ -17,11 +17,11 @@ import { AntDesign } from "@expo/vector-icons";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { user, idUser } = useSelector((state) => state.user);
   const { getUser, editProfile } = usersAction;
 
   useEffect(() => {
-    dispatch(getUser("63843822a7cb6fdc13b9307c"));
+    dispatch(getUser( idUser));
     // eslint-disable-next-line
   }, []);
   const [editUser, setEditUser] = useState({
@@ -45,7 +45,7 @@ const EditProfile = () => {
   const submit = async () => {
     try {
         let data = {
-            id: "63843822a7cb6fdc13b9307c",
+            id: idUser,
             edit: editUser
           }
        let res =  await  dispatch(editProfile(data))

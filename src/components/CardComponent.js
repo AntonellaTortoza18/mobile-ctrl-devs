@@ -28,13 +28,13 @@ export default function CardComponent({ route }) {
   let [comments, setComments] = useState([]);
   let [reload, setReload] = useState(true);
   const [create, setCreate] = useState({
-    userId: "6381a0577954f5eb0e896e24",
+    userId: idUser,
     showId: eventId,
     comment: "",
     date: "10-12-2022",
   });
 
-  console.log(idUser);
+
 
   useEffect(() => {
     getMyComments();
@@ -55,13 +55,16 @@ export default function CardComponent({ route }) {
 
   const submit = async () => {
     let inputs = Object.values(create).some((input) => input === "");
+    let headers = { headers: { Authorization: `Bearer ${token}` } };
     if (!inputs) {
+
       try {
-        let res = await axios.post(`${apiUrl}api/comments`, create);
+
+        let res = await axios.post(`${apiUrl}api/comments`, create, headers);
         console.log(res);
         setReload(!reload);
         if (res.data.success) {
-          Alert.alert("Hi", "Comment created successfully 🤩", [
+          Alert.alert(user.name, "The comment was created successfully 🤩", [
             {
               text: "OK",
             },
@@ -140,16 +143,17 @@ export default function CardComponent({ route }) {
                           <TouchableOpacity
                             onPress={() =>
                               Alert.alert(
-                                "Hi",
+                                user.name,
                                 "Are you sure to delete the comment?",
                                 [
                                   {
                                     text: "OK",
                                     onPress: async () => {
+                                      let headers = { headers: { Authorization: `Bearer ${token}` } };
                                       try {
                                         await axios.delete(
-                                          `${apiUrl}api/comments/${item._id}`
-                                        );
+                                          `${apiUrl}api/comments/${item._id}`,
+                                        headers);
                                       } catch {}
                                     },
                                   },

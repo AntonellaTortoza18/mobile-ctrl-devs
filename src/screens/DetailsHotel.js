@@ -18,7 +18,9 @@ export default function DetailsHotel({ route }) {
     }
   };
 
-  hotel();
+  useEffect(() => {
+    hotel();
+  }, []);
 
   return (
     <View>
