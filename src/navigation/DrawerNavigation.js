@@ -12,6 +12,7 @@ import DetailsHotel from "../screens/DetailsHotel";
 import DetailsCity from "../screens/DetailsCity";
 import ProfileScreen from "../screens/Profile";
 import MyReactions from "../screens/MyReactions";
+import InputEdit from "../components/InputEdit";
 
 
 
@@ -76,6 +77,11 @@ export function DrawerNavigation() {
         name="DetailsCity"
         options={{ headerShown: false }}
         component={DetailsCity}
+      />
+       <Drawer.Screen
+        name="InputEdit"
+        options={{ headerShown: false }}
+        component={InputEdit}
       />
       
     </Drawer.Navigator>

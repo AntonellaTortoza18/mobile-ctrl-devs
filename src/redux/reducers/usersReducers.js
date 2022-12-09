@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import usersActions from "../actions/usersActions";
 import { AsyncStorageStatic } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { enter, reEnter, signOff, getUser, editProfile } = usersActions;
 
@@ -20,7 +21,21 @@ const usersReducers = createReducer(initialState, (builder) => {
       const { success, response } = action.payload;
       if (success) {
         let { user, token } = response; //este token es el codigo que viene del backend
-       /*  localStorage.setItem(
+/* 
+        const store = async (value) => {
+          try {
+            await AsyncStorage.setItem(
+              "value",
+              JSON.stringify({ token: { user: token } })
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        
+        store() */
+
+        /*  localStorage.setItem(
           "token",
           JSON.stringify({ token: { user: token } })
         ); */ //este objeto token va a guardar
@@ -34,6 +49,7 @@ const usersReducers = createReducer(initialState, (builder) => {
           idUser: user.id,
           token: token,
         };
+        console.log(idUser);
         return newState;
       } else {
         let newState = {
@@ -92,18 +108,13 @@ const usersReducers = createReducer(initialState, (builder) => {
         return newState;
       }
     })
-    .addCase(getUser.fulfilled, (state, action) => 
-    {
-    
+    .addCase(getUser.fulfilled, (state, action) => {
       return {
         ...state,
         user: action.payload.response,
-        
       };
     })
-    .addCase(editProfile.fulfilled, (state, action) => 
-    {
-    
+    .addCase(editProfile.fulfilled, (state, action) => {
       return {
         ...state,
         user: action.payload.response,
@@ -111,9 +122,9 @@ const usersReducers = createReducer(initialState, (builder) => {
         lastName: action.payload.response.lastName,
         photo: action.payload.response.photo,
         role: action.payload.response.role,
-        age: action.payload.response.age
+        age: action.payload.response.age,
       };
-    })
+    });
 });
 
 export default usersReducers;
