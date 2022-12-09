@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import usersActions from "../actions/usersActions";
-import { AsyncStorageStatic } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { enter, reEnter, signOff, getUser, editProfile } = usersActions;
@@ -20,25 +19,20 @@ const usersReducers = createReducer(initialState, (builder) => {
     .addCase(enter.fulfilled, (state, action) => {
       const { success, response } = action.payload;
       if (success) {
-        let { user, token } = response; //este token es el codigo que viene del backend
-/* 
-        const store = async (value) => {
+        let { user, token } = response; 
+        const store = async () => {
           try {
             await AsyncStorage.setItem(
-              "value",
+              "token",
               JSON.stringify({ token: { user: token } })
             );
           } catch (error) {
             console.log(error);
           }
         };
-        
-        store() */
 
-        /*  localStorage.setItem(
-          "token",
-          JSON.stringify({ token: { user: token } })
-        ); */ //este objeto token va a guardar
+        store();
+
         let newState = {
           ...state,
           name: user.name,
@@ -49,7 +43,7 @@ const usersReducers = createReducer(initialState, (builder) => {
           idUser: user.id,
           token: token,
         };
-        console.log(idUser);
+     
         return newState;
       } else {
         let newState = {
@@ -87,7 +81,7 @@ const usersReducers = createReducer(initialState, (builder) => {
     .addCase(signOff.fulfilled, (state, action) => {
       const { success, response } = action.payload;
       if (success) {
-        localStorage.removeItem("token");
+        AsyncStorage.removeItem("token");
         let newState = {
           ...state,
           name: "",
@@ -98,7 +92,6 @@ const usersReducers = createReducer(initialState, (builder) => {
           idUser: "",
           token: "",
         };
-        console.log(newState);
         return newState;
       } else {
         let newState = {

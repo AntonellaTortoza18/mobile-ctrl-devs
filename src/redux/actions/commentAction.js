@@ -3,8 +3,6 @@ import axios from "axios";
 import apiUrl from "../../../url";
 
       const createComment = createAsyncThunk("createComment", async (datos) => {
-        console.log(datos);
-        /* let headers = { headers: { Authorization: `Bearer ${datos.token}` } }; */
         let url = `${apiUrl}api/comments`;
         try {
           const res = await axios.post(url, datos.data, /* headers */);

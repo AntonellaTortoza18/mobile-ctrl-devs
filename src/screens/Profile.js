@@ -17,11 +17,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 const ProfileScreen = (props) => {
   const dispatch = useDispatch();
-  const {  user } = useSelector((state) => state.user);
+  const {  user, idUser} = useSelector((state) => state.user);
   const { getUser} = usersAction;
 
   useEffect(() => {
-    dispatch(getUser("63843822a7cb6fdc13b9307c"));
+    dispatch(getUser(idUser));
     // eslint-disable-next-line
   }, []);
 

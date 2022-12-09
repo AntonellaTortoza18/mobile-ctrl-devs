@@ -26,7 +26,10 @@ export default function DetailsCity({ route }) {
     }
   };
 
-  city();
+  
+  useEffect(() => {
+    city();
+  }, []);
 
   return (
     <View>
