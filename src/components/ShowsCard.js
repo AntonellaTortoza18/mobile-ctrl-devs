@@ -1,15 +1,12 @@
-import { View, Text, ImageBackground, StyleSheet, onPress } from "react-native";
+import { View, Text, ImageBackground, StyleSheet, onPress, TouchableOpacity } from "react-native";
 import React from "react";
-import { useState, useEffect, useRef } from "react";
-import CardComponent from "../components/CardComponent";
+import { useNavigation } from '@react-navigation/native';
+import Reaction from "./Reaction";
 
 export default function ShowsCard(props) {
   let { img, name, idShow, capacity, description, price } = props;
-  const [open, setOpen] = useState(false);
+  const navigation = useNavigation();
 
-  const handleOpen = () => {
-    open ? setOpen(false) : setOpen(true);
-  };
 
   return (
     <View style={styles.containAll}>
@@ -31,21 +28,16 @@ export default function ShowsCard(props) {
           </View>
         </View>
         <View style={styles.containerReaction}>
-          {/* <Reaction eventId={id} type="itineraryId" /> */}
+           <Reaction eventId={idShow} type="showId" /> 
         </View>
         <View style={styles.btnView}>
-          <Text title="Comments" style={styles.button} onPress={handleOpen}>
-            {" "}
-            {open ? "Close " : ""}
-            Comments{" "}
+          <TouchableOpacity  onPress={() => navigation.navigate('Comments', {eventId: idShow})}>
+          <Text title="Comments" style={styles.button}  >
+            Comments
           </Text>
+          </TouchableOpacity>
         </View>
-      </View>
-      {open && (
-        <View style={styles.inputComment}>
-          <CardComponent eventId={idShow}></CardComponent>
-        </View>
-      )}
+      </View>    
     </View>
   );
 }

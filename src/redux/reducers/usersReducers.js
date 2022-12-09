@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import usersActions from "../actions/usersActions";
+import { AsyncStorageStatic } from "react-native";
 
 const { enter, reEnter, signOff, getUser, editProfile } = usersActions;
 

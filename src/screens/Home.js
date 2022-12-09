@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 
-const Home = () => {
+const Home = (props) => {
   
 
   return (
@@ -34,7 +34,7 @@ const Home = () => {
           <View style={styles.containButtonn}>
             <TouchableOpacity
               style={styles.btCallToAction}
-              onPress={() => props.navigation.navigate("cities")}
+              onPress={() => props.navigation.navigate("Cities")}
             >
               <Text
                 style={{ color: "white", fontSize: 15, textAlign: "center" }}
@@ -44,7 +44,7 @@ const Home = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btCallToAction}
-              onPress={() => props.navigation.navigate("cities")}
+              onPress={() => props.navigation.navigate("Hotels")}
             >
               <Text
                 style={{ color: "white", fontSize: 15, textAlign: "center" }}

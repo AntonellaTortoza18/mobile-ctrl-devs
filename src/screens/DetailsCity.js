@@ -1,42 +1,50 @@
-import { View, Text, ImageBackground, StyleSheet, Button, TouchableOpacity, onPress } from "react-native";
-import React, { useState } from "react";
-import { useNavigation } from '@react-navigation/native';
-import Reaction from "./Reaction";
+import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
+import React from "react";
+import axios from "axios";
+import apiUrl from "../../url";
+import { useEffect, useState } from "react";
 
-export default function ItineraryCard(props) {
-  let { img, name, description, price, duration, id } = props;
-  const navigation = useNavigation();
+export default function DetailsCity({ route }) {
+  let { cityId } = route.params;
+  let [cities, setCities] = useState([]);
 
+  const city = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}api/cities/${cityId}`);
+      setCities(res.data.response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  city();
 
   return (
-    <View style={styles.containAll}>
-      <View style={styles.card2}>
-        <View style={styles.cardHeader}>
-          <ImageBackground
-            resizeMode="cover"
-            source={{ uri: img }}
-            style={styles.itineraryImage}
-          >
-            <Text style={styles.titleItinerary}>{name}</Text>
-          </ImageBackground>
-        </View>
-        <View style={styles.cardBody}>
-          <Text style={{ margin: 10 }}>{description}</Text>
-          <View style={{ flexDirection: "row", margin: 5 }}>
-            <Text style={{ marginRight: 25 }}>USD ${price}</Text>
-            <Text>{duration} Hours 🕐 </Text>
+    <View>
+      <Image
+        resizeMode="cover"
+        source={require("../../assets/mytinerary.jpg")}
+        style={styles.image}
+      />
+      <View style={styles.containAll}>
+        <View style={styles.card2}>
+          <View style={styles.cardHeader}>
+            <ImageBackground
+              resizeMode="cover"
+              source={{ uri: cities.photo }}
+              style={styles.itineraryImage}
+            >
+              <Text style={styles.titleItinerary}>{cities.name}</Text>
+            </ImageBackground>
           </View>
-        </View>
-        <View style={styles.containerReaction}>
-          <Reaction eventId={id} type="itineraryId" />
-        </View>
-        <View style={styles.btnView}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Comments', {eventId: id})}>
-          <Text title="Comments" style={styles.button}  >
-            Comments
-          </Text>
-          </TouchableOpacity>
-
+          <View style={styles.cardBody}>
+            <View style={{ flexDirection: "column", margin: 5 }}>
+              <Text>Zone: {cities.zone} </Text>
+              <Text style={{ marginRight: 25 }}>
+                Population : {cities.population}
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -46,6 +54,7 @@ export default function ItineraryCard(props) {
 const styles = StyleSheet.create({
   containAll: {
     padding: 40,
+    paddingTop: 50,
     shadowColor: "black",
     shadowOpacity: 0.5,
     shadowRadius: 5,
@@ -54,6 +63,7 @@ const styles = StyleSheet.create({
       height: 2,
     },
   },
+
   containItineraries: {
     height: 370,
     width: "100%",
@@ -76,6 +86,7 @@ const styles = StyleSheet.create({
   itineraryImage: {
     height: 200,
   },
+
   titleItinerary: {
     textAlign: "center",
     paddingTop: 5,
@@ -86,6 +97,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     color: "black",
   },
+
   card2: {
     margin: 10,
     backgroundColor: "#fff",
@@ -100,20 +112,22 @@ const styles = StyleSheet.create({
   cardHeader: {
     padding: 1,
   },
+
   cardBody: {
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
   },
+
   containerReaction: {
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
     flexDirection: "row",
     width: "100%",
-
   },
+
   btnView: {
     flex: 1,
     justifyContent: "center",
@@ -123,5 +137,9 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 20,
   },
-  
+
+  image: {
+    height: 300,
+    width: 500,
+  },
 });

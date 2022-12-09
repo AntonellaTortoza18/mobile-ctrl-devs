@@ -10,11 +10,13 @@ import {
   Alert,
 } from "react-native";
 import React from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import usersActions from "../redux/actions/usersActions";
 import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
+  const navigation = useNavigation();
   let dispatch = useDispatch();
   let { enter } = usersActions;
   const [logIn, setLogIn] = useState({
@@ -51,67 +53,60 @@ export default function Login() {
         console.log(e);
       }
     } else {
-      showMessage({
-        message: "All the fields are required! ☹️",
-        type: "danger",
-        color: "white",
-        backgroundColor: "purple",
-      });
+      Alert.alert("Error", "All the fields are required! ☹️");
     }
   };
 
   return (
     <>
-     
-        <View  style={styles.containerr}>
-          <ImageBackground
-            resizeMode="contain"
-            source={require("../../assets/map.png")}
-            style={styles.image}
-          >
-            <Text style={styles.textTittle}>¡Welcome!</Text>
-            <TextInput
-              placeholder="Email"
-              placeholderTextColor="#333333"
-              color="black"
-              style={styles.inputSignUp}
-              onChangeText={(e) => handlerInput(e, "mail")}
-            />
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="#333333"
-              color="black"
-              secureTextEntry={true}
-              password={true}
-              style={styles.inputSignUp}
-              onChangeText={(e) => handlerInput(e, "password")}
-            />
-            <TouchableOpacity style={styles.button}>
-              <Text
-                style={{ textAlign: "center", color: "white", fontSize: 18 }}
-                onPress={submit}
-              >
-                Log In
-              </Text>
-            </TouchableOpacity>
-            <Text style={{ color: "black", fontSize: 14, textAlign: "center" }}>
-              Don't have an account?
+      <View style={styles.containerr}>
+        <ImageBackground
+          resizeMode="contain"
+          source={require("../../assets/map.png")}
+          style={styles.image}
+        >
+          <Text style={styles.textTittle}>¡Welcome!</Text>
+          <TextInput
+            placeholder="Email"
+            placeholderTextColor="#333333"
+            color="black"
+            style={styles.inputSignUp}
+            onChangeText={(e) => handlerInput(e, "mail")}
+          />
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor="#333333"
+            color="black"
+            secureTextEntry={true}
+            password={true}
+            style={styles.inputSignUp}
+            onChangeText={(e) => handlerInput(e, "password")}
+          />
+          <TouchableOpacity style={styles.button}>
+            <Text
+              style={{ textAlign: "center", color: "white", fontSize: 18 }}
+              onPress={submit}
+            >
+              Log In
             </Text>
-            <Pressable onPress={() => props.navigation.navigate("signup")}>
-              <Text
-                style={{
-                  color: "black",
-                  fontSize: 17,
-                  textAlign: "center",
-                  textDecorationLine: "underline",
-                }}
-              >
-                Sign Up
-              </Text>
-            </Pressable>
-          </ImageBackground>
-        </View>
-      
+          </TouchableOpacity>
+          <Text style={{ color: "black", fontSize: 14, textAlign: "center" }}>
+            Don't have an account?
+          </Text>
+          <Pressable onPress={() => navigation.navigate("SignUp")}>
+            <Text
+              style={{
+                color: "black",
+                fontSize: 17,
+                textAlign: "center",
+                textDecorationLine: "underline",
+              }}
+            >
+              Sign Up
+            </Text>
+          </Pressable>
+        </ImageBackground>
+      </View>
     </>
   );
 }
@@ -159,12 +154,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     padding: 10,
   },
-  containerr:{
-    flex:1,
-    justifyContent:"center",
+  containerr: {
+    flex: 1,
+    justifyContent: "center",
     flexDirection: "column",
-    alignItems:"center",
-    alignContent:"space-between",
-    height:"100%"
-  }
+    alignItems: "center",
+    alignContent: "space-between",
+    height: "100%",
+  },
 });

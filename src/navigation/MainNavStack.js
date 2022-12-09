@@ -5,6 +5,7 @@ import SingUp from "../screens/SingUp"
 import Home from "../screens/Home"
 import Login from "../screens/Login"
 import Hotels from "../screens/Hotels"
+import CardComponent from "../components/CardComponent"
 import { Ionicons } from "@expo/vector-icons";
 
 const Bottom = createBottomTabNavigator()
@@ -44,6 +45,7 @@ const Navigator = () => {
 			<Bottom.Screen name="Login" options={{headerShown: false}} component={Login}/>
 			<Bottom.Screen name="Signup" options={{headerShown: false}} component={SingUp}/>
 		</Bottom.Navigator>
+
 	)
 }
 

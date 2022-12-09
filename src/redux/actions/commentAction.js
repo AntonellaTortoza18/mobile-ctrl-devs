@@ -4,10 +4,10 @@ import apiUrl from "../../../url";
 
       const createComment = createAsyncThunk("createComment", async (datos) => {
         console.log(datos);
-        let headers = { headers: { Authorization: `Bearer ${datos.token}` } };
+        /* let headers = { headers: { Authorization: `Bearer ${datos.token}` } }; */
         let url = `${apiUrl}api/comments`;
         try {
-          const res = await axios.post(url, datos.data, headers);
+          const res = await axios.post(url, datos.data, /* headers */);
            console.log(res);
           return {
             success: true,
@@ -40,10 +40,10 @@ const getComment = createAsyncThunk("getComment", async ({ id }) => {
 const deleteComment = createAsyncThunk(
   "deleteComment",
   async ({ idComment, token }) => {
-    let headers = { headers: { Authorization: `Bearer ${token}` } };
+   /*  let headers = { headers: { Authorization: `Bearer ${token}` } }; */
     let url = `${apiUrl}api/comments/${idComment}`;
     try {
-      const res = await axios.delete(url, headers);
+      const res = await axios.delete(url/* , headers */);
       console.log(res);
       return {
         shows: res.data,
