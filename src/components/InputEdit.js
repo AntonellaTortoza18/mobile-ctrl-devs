@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 
 export default function InputEdit({ route }) {
   let { commentId, eventId } = route.params;
-  const { idUser, token } = useSelector((state) => state.user);
+  const { idUser, token, user } = useSelector((state) => state.user);
   const [create, setCreate] = useState({
     userId: idUser,
     showId: eventId,

@@ -80,6 +80,7 @@ const usersReducers = createReducer(initialState, (builder) => {
     })
     .addCase(signOff.fulfilled, (state, action) => {
       const { success, response } = action.payload;
+      
       if (success) {
         AsyncStorage.removeItem("token");
         let newState = {

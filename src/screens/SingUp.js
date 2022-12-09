@@ -36,7 +36,6 @@ export default function SingUp() {
       [campo]: e || value,
     });
   };
-
   const submit = async () => {
     let inputs = Object.values(signUp).some((input) => input === "");
     if (!inputs) {

@@ -14,7 +14,6 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons'; 
 
-
 const ProfileScreen = (props) => {
   const dispatch = useDispatch();
   const {  user, idUser} = useSelector((state) => state.user);

@@ -14,6 +14,7 @@ export default function DetailsHotel({ route }) {
       const res = await axios.get(`${apiUrl}api/hotels/${hotelId}`);
       setHotels(res.data.response[0]);
     } catch (error) {
+      
       console.log(error);
     }
   };

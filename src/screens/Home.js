@@ -43,6 +43,7 @@ const Home = (props) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+            
               style={styles.btCallToAction}
               onPress={() => props.navigation.navigate("Hotels")}
             >

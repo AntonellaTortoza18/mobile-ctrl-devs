@@ -65,7 +65,6 @@ const Hotels = () => {
     </ScrollView>
   );
 };
-
 export default Hotels;
 
 const styles = StyleSheet.create({

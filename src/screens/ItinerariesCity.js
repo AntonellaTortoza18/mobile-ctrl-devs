@@ -14,25 +14,15 @@ import {
 import axios from "axios";
 import apiUrl from "../../url";
 
-  
-
-  
   export default function ItinerariesCity() {
     let [itineraries, setItineraries] = useState([]);
 
-
-  
     useEffect(() => {
         axios.get(`${apiUrl}api/itineraries`)
       .then((res) => setItineraries(res.data.response));
   
       // eslint-disable-next-line
     }, []);
-  
-   
-  
-  
-  
   
     return (
       <ScrollView>

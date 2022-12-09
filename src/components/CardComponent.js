@@ -21,13 +21,14 @@ import { useNavigation } from '@react-navigation/native';
 export default function CardComponent({ route }) {
   let { eventId } = route.params;
   const navigation = useNavigation();
-  const { idUser, token } = useSelector((state) => state.user);
+  const { idUser, token, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { getComment, createComment, deleteComment, editComment } =
     commentsAction;
   let [comments, setComments] = useState([]);
   let [reload, setReload] = useState(true);
   const [create, setCreate] = useState({
+    
     userId: idUser,
     showId: eventId,
     comment: "",
