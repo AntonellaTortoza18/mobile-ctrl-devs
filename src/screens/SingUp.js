@@ -62,8 +62,14 @@ export default function SingUp() {
         }
 
       } catch (e) {
-        console.log(e);
+        Alert.alert("Error",  e.response.data.message, [
+          {
+            text: "OK",
+          },
+        ]);
       }
+    }else {
+      Alert.alert("Error", "All the fields are required! ☹️");
     }
   };
 
@@ -74,6 +80,7 @@ export default function SingUp() {
         source={require("../../assets/map.png")}
         style={styles.image}
       >
+        <Text style={styles.textTittle}>Create an account</Text>
         <TextInput
           style={styles.inputSignUp}
           id="name"
@@ -132,13 +139,13 @@ export default function SingUp() {
             Sign Up
           </Text>
         </TouchableOpacity>
-        <Text style={{ color: "#1c7cafe6", fontSize: 14, textAlign: "center" }}>
+        <Text style={{ color: "black", fontSize: 14, textAlign: "center" }}>
           Already have an account?
         </Text>
         <Pressable onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
-              color: "#1c7cafe6",
+              color: "black",
               fontSize: 17,
               textAlign: "center",
               textDecorationLine: "underline",
@@ -163,8 +170,20 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
+    height: 900,
     alignItems: "center",
-    marginBottom: 60,
+    justifyContent: "center",
+    flex: 1,
+    paddingRight: 5,
+  },
+  textTittle: {
+    color: "rgb(111, 164, 198 )",
+    fontSize: 35,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: 50,
+    borderColor: "rgb (68, 78, 84 )",
+    shadowColor: "black",
   },
   inputSignUp: {
     backgroundColor: "rgba(255, 255, 255, 0.50)",

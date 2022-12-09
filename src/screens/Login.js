@@ -65,7 +65,7 @@ export default function Login() {
           source={require("../../assets/map.png")}
           style={styles.image}
         >
-          <Text style={styles.textTittle}>¡Welcome!</Text>
+          <Text style={styles.textTittle}>Welcome!</Text>
           <TextInput
             placeholder="Email"
             placeholderTextColor="#333333"
