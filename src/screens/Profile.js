@@ -15,7 +15,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 
 
-const ProfileScreen = () => {
+const ProfileScreen = (props) => {
   const dispatch = useDispatch();
   const {  user } = useSelector((state) => state.user);
   const { getUser} = usersAction;
@@ -64,13 +64,13 @@ const ProfileScreen = () => {
       </View>
 
       <View style={styles.infoBoxWrapper}>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple onPress={() => props.navigation.navigate("MyReactions")}>
           <View style={styles.menuItem}>
           <Feather name="heart" size={24} color="#1c7cafe6" />
-            <Text style={styles.menuItemText}>Your Reactions</Text>
+            <Text style={styles.menuItemText}>My Reactions</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple  onPress={() => props.navigation.navigate("EditProfile")}>
           <View style={styles.menuItem}>
           <AntDesign name="edit" size={24} color="#1c7cafe6" />
             <Text style={styles.menuItemText}>Edit Profile</Text>
