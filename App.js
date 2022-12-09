@@ -3,9 +3,10 @@ import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
 import {NavigationContainer} from "@react-navigation/native"
-import Navigator from "./src/navigation/MainNavBottom"
+import Navigator from "./src/navigation/MainNavStack"
 import 'react-native-gesture-handler';
 import { DrawerNavigation } from "./src/navigation/DrawerNavigation";
+import ProfileScreen from "./src/screens/Profile";
 
 
 
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        {/* <ProfileScreen/> */}
         {/* <Navigator/> */}
        <DrawerNavigation/>
       </NavigationContainer>
@@ -21,5 +23,5 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({});
+
 

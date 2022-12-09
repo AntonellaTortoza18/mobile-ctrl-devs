@@ -89,7 +89,7 @@ export default function Carousel() {
             <Text onPress={() => prev()} style={styles.btn} > ← </Text>
             <View style={styles.containImages}>
               {details[number].map((photo, index) => {
-                return <Image style={styles.image} source={{ uri: photo }} />;
+                return <Image style={styles.image} key={index} source={{ uri: photo }} />;
               })}
             </View>
             <Text onPress={() => next()} style={styles.btn}> → </Text>

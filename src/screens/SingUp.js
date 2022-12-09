@@ -15,19 +15,20 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function SingUp(props) {
+
+export default function SingUp() {
   const navigation = useNavigation();
-  let { role } = props;
+ 
   const [signUp, setSignUp] = useState({
     name: "",
     lastName: "",
     photo: "",
     age: "",
-    role: "admin",
+    role: "user",
     mail: "",
     password: "",
   });
-  console.log(signUp);
+ 
 
   const handlerInput = (e, campo, value) => {
     setSignUp({
@@ -41,6 +42,7 @@ export default function SingUp(props) {
     if (!inputs) {
       try {
         let res = await axios.post(`${apiUrl}api/auth/sign-up`, signUp);
+
         if (res.data.success) {
           Alert.alert(
             "Hi",
@@ -58,6 +60,7 @@ export default function SingUp(props) {
             },
           ]);
         }
+
       } catch (e) {
         console.log(e);
       }
