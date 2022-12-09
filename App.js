@@ -6,7 +6,6 @@ import {NavigationContainer} from "@react-navigation/native"
 import Navigator from "./src/navigation/MainNavStack"
 import 'react-native-gesture-handler';
 import { DrawerNavigation } from "./src/navigation/DrawerNavigation";
-import ProfileScreen from "./src/screens/Profile";
 
 
 
@@ -15,9 +14,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {/* <ProfileScreen/> */}
-        {/* <Navigator/> */}
-       <DrawerNavigation/>
+        <Navigator/>
+       {/* <DrawerNavigation/> */}
       </NavigationContainer>
     </Provider>
   );

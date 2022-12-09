@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
+import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import axios from "axios";
 import apiUrl from "../../url";
 import { useEffect, useState } from "react";
-
+import { useNavigation } from '@react-navigation/native';
 export default function DetailsHotel({ route }) {
+  const navigation = useNavigation();
   let { hotelId } = route.params;
   let [hotels, setHotels] = useState([]);
 
@@ -30,7 +31,7 @@ export default function DetailsHotel({ route }) {
           <View style={styles.cardHeader}>
             <ImageBackground
               resizeMode="cover"
-              source={{ uri: hotels.photo[0]}}
+              source={{ uri: hotels.photo}}
               style={styles.itineraryImage}
             >
               <Text style={styles.titleItinerary}>{hotels.name}</Text>
@@ -42,6 +43,16 @@ export default function DetailsHotel({ route }) {
             </View>
           </View>
         </View>
+      </View>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <TouchableOpacity
+          style={styles.btCallToAction}
+          onPress={() => navigation.navigate("Shows")}
+        >
+          <Text style={{ color: "white", fontSize: 15, textAlign: "center" }}>
+            See Shows!
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -59,7 +70,15 @@ const styles = StyleSheet.create({
       height: 2,
     },
   },
-
+  btCallToAction: {
+    marginBottom: 50,
+    backgroundColor: "rgb(169, 204, 227 )",
+    width: "35%",
+    borderRadius: 15,
+    padding: 15,
+    borderColor: "169, 204, 227 ",
+    margin: 5,
+  },
   containItineraries: {
     height: 370,
     width: "100%",

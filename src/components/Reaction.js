@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ export default function Reaction(props) {
   async function changeIcon(event) {
     let name;
     reaction.reactions.data.forEach((e) => {
-      if (e.name === event.target.name) {
+      if (e.name === event) {
         name = e.name;
       }
     });
@@ -50,27 +50,35 @@ export default function Reaction(props) {
           let res = e.userId.find((user) => user._id === idUser);
           return res ? (
             <>
+            <TouchableOpacity onPress={()=>{
+              changeIcon(e.name)
+            }}>
               <Image
               style={styles.imageIcon}
                 source={{ uri: e.icon }}
                 alt={e.name}
                 name={e.name}
-                onClick={changeIcon}
                 key={e.name}
               />
+                </TouchableOpacity>
+              
               <Text>{reaction.reactions.lengthOfReactions[e.name]}</Text>
             </>
           ) : (
             <>
+             <TouchableOpacity onPress={()=>{
+              changeIcon(e.name)
+            }}>
               <Image
                style={styles.imageIcon}
                 source={{ uri: e.iconBack }}
                 alt={e.name}
                 name={e.name}
-                onClick={changeIcon}
                 key={e.name}
               />
+              </TouchableOpacity>
               <Text>{reaction.reactions.lengthOfReactions[e.name]}</Text>
+              
             </>
           );
         })}

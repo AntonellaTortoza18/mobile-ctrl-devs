@@ -7,6 +7,7 @@ const enter = createAsyncThunk("enter", async (datos) => {
   let url = `${apiUrl}api/auth/sign-in`;
   try {
     let user = await axios.post(url, datos);
+    console.log(user);
     return {
       success: true,
       response: user.data.response,
@@ -60,7 +61,6 @@ const getUser = createAsyncThunk("getUser", async (id) => {
   let url = `${apiUrl}api/auth/me/${id}`;
   try {
     let res = await axios.get(url);
-    console.log(res);
     return {
       //el return es el payload (carga) que recibe el reductor
       success: true,
