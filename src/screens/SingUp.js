@@ -12,18 +12,17 @@ import axios from "axios";
 import apiUrl from "../../url";
 
 
-export default function SingUp(props) {
-  let { role } = props;
+export default function SingUp() {
   const [signUp, setSignUp] = useState({
     name: "",
     lastName: "",
     photo: "",
     age: "",
-    role: "admin",
+    role: "user",
     mail: "",
     password: "",
   });
-  console.log(signUp);
+ 
 
   const handlerInput = (e, campo, value) => {
     setSignUp({
@@ -37,7 +36,6 @@ export default function SingUp(props) {
     if (!inputs) {
       try {
         let res = await axios.post(`${apiUrl}api/auth/sign-up`, signUp);
-        console.log(res);
       } catch (e) {
         console.log(e);
       }
